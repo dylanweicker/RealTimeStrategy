@@ -22,13 +22,19 @@ public class UnitAnimation : NetworkBehaviour
     [ClientCallback]
     private void Update()
     {
-        CheckAnimation(); //new
+        CheckMovement(); //new
     }
 
-    private void CheckAnimation(){  //new
+    private void CheckMovement(){  //new
         speed = ((transform.position - previousPosition).magnitude) / Time.deltaTime;
         previousPosition = transform.position;
         anim.SetBool("Run", speed > 1);
+    }
+
+    [ClientRpc]
+    public void RpcShootArrow()
+    {
+        anim.SetBool("Longbow Shoot Attack 01", true);
     }
 
     #endregion
