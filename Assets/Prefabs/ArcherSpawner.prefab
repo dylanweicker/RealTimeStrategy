@@ -152,10 +152,10 @@ GameObject:
   - component: {fileID: 1139414351621259646}
   - component: {fileID: 6018102796918649969}
   - component: {fileID: 2781771264140349528}
-  - component: {fileID: 1317154651347960152}
   - component: {fileID: -2068537132723273359}
   - component: {fileID: -6250226606216043605}
   - component: {fileID: 1771470090385728988}
+  - component: {fileID: 7286313105242432544}
   m_Layer: 0
   m_Name: ArcherSpawner
   m_TagString: Untagged
@@ -210,22 +210,6 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &1317154651347960152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5627491029311890596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51461ccafb56e7f4a9c902d6b509ba7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  unitPrefab: {fileID: 5560560054316083430, guid: 97b26a13110d75b45835eb1624cf9903, type: 3}
-  spawnPoint: {fileID: 248024879538849009}
 --- !u!114 &-2068537132723273359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  maxHealth: 500
+  maxHealth: 100
 --- !u!114 &1771470090385728988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +254,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarParent: {fileID: 57126867705104321}
   healthBarImage: {fileID: 57126867012387768}
+--- !u!114 &7286313105242432544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627491029311890596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1352d40f43cb14ba3412b80627686f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  unitPrefab: {fileID: 5560560054316083430, guid: 97b26a13110d75b45835eb1624cf9903, type: 3}
+  spawnPoint: {fileID: 248024879538849009}
 --- !u!1001 &4049991498141890316
 PrefabInstance:
   m_ObjectHideFlags: 0

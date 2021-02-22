@@ -27,13 +27,11 @@ public class Health : NetworkBehaviour
         if(currentHealth == 0) return;  //already dead
 
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
-        Debug.Log($"Took {damageAmount} damage");
 
         if (currentHealth != 0) return; //not dead yet
 
         //now dead
         ServerOnDie?.Invoke();
-        Debug.Log("We Died");
     }
 
     #endregion
