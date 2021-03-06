@@ -4,44 +4,75 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using System.Text.RegularExpressions;
+using System;
 
 public class RTSPlayer : NetworkBehaviour
 { 
-    //Name and Color
-    [SerializeField] private TMP_Text displayNameText = null;
-    [SerializeField] private Renderer displayColorRenderer = null;
-
-    [SyncVar(hook=nameof(HandleDisplayNameUpdated))]
-    [SerializeField]
-    private string displayName = "Missing Name";
-
-    [SyncVar(hook=nameof(HandleDisplayColorUpdated))]
-    [SerializeField]
-    private Color displayColor = new Color(0, 0, 0);
-
-    //Units
+    [SerializeField] private Building[] buildings = new Building[0];
     private List<Unit> myUnits = new List<Unit>();
+    private List<Building> myBuildings = new List<Building>();
+
+    [SyncVar (hook = nameof(ClientHandleGoldUpdated))] private int gold = 10;
+    [SyncVar (hook = nameof(ClientHandleWoodUpdated))] private int wood = 50;
+    [SyncVar (hook = nameof(ClientHandleStoneUpdated))] private int stone = 0;
+    [SyncVar (hook = nameof(ClientHandleIronUpdated))] private int iron = 0;
+    [SyncVar (hook = nameof(ClientHandleFoodUpdated))] private int food = 500;
+
+    public event Action<int> ClientOnGoldUpdated;
+    public event Action<int> ClientOnWoodUpdated;
+    public event Action<int> ClientOnStoneUpdated;
+    public event Action<int> ClientOnIronUpdated;
+    public event Action<int> ClientOnFoodUpdated;
+
+    private float woodPerMinute = 0;
+
+    public event Action<float> ClientOnWoodPerMinuteUpdated;
+
 
     public List<Unit> GetMyUnits()
     {
         return myUnits;
     }
+    
+    public List<Building> GetMyBuildings()
+    {
+        return myBuildings;
+    }
+
+    public int GetGold() { return gold; }
+    public int GetWood() { return wood; }
+    public int GetStone() { return stone; }
+    public int GetIron() { return iron; }
+    public int GetFood() { return food; }
+    
+    [Server] public void SetGold(int newValue) { gold = newValue; }
+    [Server] public void SetWood(int newValue) { wood = newValue; }
+    [Server] public void SetStone(int newValue) { stone = newValue; }
+    [Server] public void SetIron(int newValue) { iron = newValue; }
+    [Server] public void SetFood(int newValue) { food = newValue; }
+
+    public float GetWoodPerMinute() { return woodPerMinute;}
 
     #region Server
 
     [Server]
-
     public override void OnStartServer()
     {
         Unit.ServerOnUnitSpawned += ServerHandleUnitSpawned;
         Unit.ServerOnUnitDespawned += ServerHandleUnitDespawned;
+        Building.ServerOnBuildingSpawned += ServerHandleBuildingSpawned;
+        Building.ServerOnBuildingDespawned += ServerHandleBuildingDespawned;
     }
+
 
     public override void OnStopServer()
     {
         Unit.ServerOnUnitSpawned -= ServerHandleUnitSpawned;
         Unit.ServerOnUnitDespawned -= ServerHandleUnitDespawned;
+        Building.ServerOnBuildingSpawned -= ServerHandleBuildingSpawned;
+        Building.ServerOnBuildingDespawned -= ServerHandleBuildingDespawned;
     }
+
 
     private void ServerHandleUnitSpawned(Unit unit)
     {
@@ -58,40 +89,45 @@ public class RTSPlayer : NetworkBehaviour
 
         myUnits.Remove(unit);
     }
-
-    public void SetDisplayName(string newDisplayName)
+    
+    private void ServerHandleBuildingSpawned(Building building)
     {
-        displayName = newDisplayName;
+        if(building.connectionToClient.connectionId != connectionToClient.connectionId) return;
+
+        myBuildings.Add(building);
     }
-
-    [Server]
-    public void SetPlayerColor(Color newDisplayColor)
+    
+    private void ServerHandleBuildingDespawned(Building building)
     {
-        displayColor = newDisplayColor;
+        if(building.connectionToClient.connectionId != connectionToClient.connectionId) return;
+
+        myBuildings.Remove(building);
     }
 
     [Command]
-    private void CmdSetDisplayName(string newDisplayName)
+    public void CmdTryPlaceBuilding(int buildingId, Vector3 location, Quaternion rotation)
     {
-        if (
-            !Regex.IsMatch(newDisplayName, "^[a-zA-Z0-9\\s]*$") ||
-            newDisplayName.Length < 3 ||
-            newDisplayName.Length > 12
-            )
+        Building buildingToPlace = null;
+
+        foreach(Building building in buildings)
         {
-          return;  
+            if(building.GetId() == buildingId)
+            {
+                buildingToPlace = building;
+                break;
+            }
+        }
+        if(buildingToPlace == null) 
+        {
+            Debug.LogError($"Tried to place a building with an unknown building Id {buildingId}");
+            return;
         }
 
-        string[] bannedWords = {"fuck", "shit", "cunt", "piss", "bitch", "fag", "nigger", "nigga", "cock", "clit", "cum", "dildo", "whore", "jizz", "masturbate", "wank", "titty", "titti", "vagina"};
-
-        foreach(string bannedWord in bannedWords) 
-        {
-            if (newDisplayName.ToLower().Contains(bannedWord)) return;
-        }
-
-        RpcBroadcastNewName(newDisplayName);
-        SetDisplayName(newDisplayName);
+        GameObject buildingInstance = 
+            Instantiate(buildingToPlace.gameObject, location, rotation);
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
     }
+
 
     #endregion
 
@@ -99,16 +135,30 @@ public class RTSPlayer : NetworkBehaviour
 
      public override void OnStartAuthority()
     {
-        if(NetworkServer.active) return;
-        Unit.AuthorityOnUnitSpawned += AuthorityHandleUnitSpawned;
-        Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawned;
+
+        if(!NetworkServer.active) 
+        {
+            Unit.AuthorityOnUnitSpawned += AuthorityHandleUnitSpawned;
+            Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawned;
+            Building.AuthorityOnBuildingSpawned += AuthorityHandleBuildingSpawned;
+            Building.AuthorityOnBuildingDespawned += AuthorityHandleBuildingDespawned;
+        }
+
+        ResourceGenerator.ResourceGeneratorsChanged += AuthorityHandleResourceGeneratorsChanged;
     }
 
     public override void OnStopClient()
     {
-        if(!isClientOnly || !hasAuthority) return;
-        Unit.AuthorityOnUnitSpawned -= AuthorityHandleUnitSpawned;
-        Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
+
+        if(isClientOnly && hasAuthority) 
+        {
+            Unit.AuthorityOnUnitSpawned -= AuthorityHandleUnitSpawned;
+            Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
+            Building.AuthorityOnBuildingSpawned -= AuthorityHandleBuildingSpawned;
+            Building.AuthorityOnBuildingDespawned -= AuthorityHandleBuildingDespawned;
+        }
+        
+        ResourceGenerator.ResourceGeneratorsChanged -= AuthorityHandleResourceGeneratorsChanged;
     }
 
     private void AuthorityHandleUnitSpawned(Unit unit)
@@ -120,27 +170,59 @@ public class RTSPlayer : NetworkBehaviour
     {
         myUnits.Remove(unit);
     }
-
-    private void HandleDisplayColorUpdated(Color oldColor, Color newColor)
+    
+    private void AuthorityHandleBuildingSpawned(Building building)
     {
-        displayColorRenderer.material.SetColor("_BaseColor", newColor);
+        myBuildings.Add(building);
     }
 
-    private void HandleDisplayNameUpdated(string oldName, string newName)
+    private void AuthorityHandleBuildingDespawned(Building building)
     {
-        displayNameText.text = newName;
+        myBuildings.Remove(building);
     }
 
-    [ContextMenu("Set My Name")]
-    private void SetMyName()
+    private void ClientHandleGoldUpdated(int oldValue, int newValue)
     {
-        CmdSetDisplayName("My New Name");
+        ClientOnGoldUpdated?.Invoke(newValue);
+    }
+    
+    private void ClientHandleWoodUpdated(int oldValue, int newValue)
+    {
+        ClientOnWoodUpdated?.Invoke(newValue);
+    }
+    
+    private void ClientHandleIronUpdated(int oldValue, int newValue)
+    {
+        ClientOnIronUpdated?.Invoke(newValue);
+    }
+    
+    private void ClientHandleStoneUpdated(int oldValue, int newValue)
+    {
+        ClientOnStoneUpdated?.Invoke(newValue);
     }
 
-    [ClientRpc]
-    private void RpcBroadcastNewName(string newDisplayName)
+    private void ClientHandleFoodUpdated(int oldValue, int newValue)
     {
-        Debug.Log($"A player has been renamed to {newDisplayName}");
+        ClientOnFoodUpdated?.Invoke(newValue);
+    }
+
+    private void AuthorityHandleResourceGeneratorsChanged()
+    {
+        CalculateWoodPerMinute();
+    }
+
+    private void CalculateWoodPerMinute()
+    {
+        float wpm = 0;
+        foreach (Building building in myBuildings)
+        {
+            ResourceGenerator resourceGenerator = building.GetComponent<ResourceGenerator>();
+            if (!resourceGenerator) continue;
+            wpm += resourceGenerator.GetWoodPerMinute();
+        }
+        woodPerMinute = wpm;
+        Debug.Log($"Our new wood per minute is {wpm}");
+        ClientOnWoodPerMinuteUpdated.Invoke(woodPerMinute);
     }
 
     #endregion

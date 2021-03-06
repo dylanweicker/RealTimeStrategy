@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2188246527930660939}
   - component: {fileID: 924072737237753151}
   - component: {fileID: 6205781879801746964}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   rb: {fileID: 924072737237753151}
   launchForce: 10
   destroyAfterSeconds: 5
+  damageToDeal: 20
 --- !u!54 &924072737237753151
 Rigidbody:
   m_ObjectHideFlags: 0

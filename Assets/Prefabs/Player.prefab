@@ -62,8 +62,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  displayNameText: {fileID: 0}
-  displayColorRenderer: {fileID: 0}
-  displayName: Missing Name
-  displayColor: {r: 0, g: 0, b: 0, a: 1}
-  myUnits: []
+  buildings:
+  - {fileID: 9100006795460263575, guid: 251080e64a07e7448a5667042c812d0b, type: 3}
+  - {fileID: 3348046030564387650, guid: 33b9eed13e3243a4997843d58468e18f, type: 3}

@@ -72,10 +72,6 @@ crashlytics-build.properties
 
 # The rest was added by Dylan
 # Files from the Asset Store
-/[Aa]ssets/GUI Kit Casual Game/
-/[Aa]ssets/Little Heroes Mega Pack/
-/[Aa]ssets/Materials/
-/[Aa]ssets/Triforge Assets/
-/[Aa]ssets/Mirror/
+/[Aa]ssets/Packages/*
 
 

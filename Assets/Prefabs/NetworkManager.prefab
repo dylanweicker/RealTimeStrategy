@@ -86,10 +86,14 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 5627491029311890596, guid: e8662d44c5c60b14a99eca4ddc116afa, type: 3}
+  - {fileID: 3723158421593568281, guid: 4d5f2b76e161a944e935a2c6b50609e8, type: 3}
   - {fileID: 5560560054316083430, guid: 97b26a13110d75b45835eb1624cf9903, type: 3}
   - {fileID: 6834670610847621810, guid: d66131b4d05268848b05c90809a5807b, type: 3}
-  archerSpawnerPrefab: {fileID: 5627491029311890596, guid: e8662d44c5c60b14a99eca4ddc116afa, type: 3}
+  - {fileID: 2388437565131156658, guid: fa56aa9fccbacb341b076776d8490607, type: 3}
+  - {fileID: 4693085744189665658, guid: 251080e64a07e7448a5667042c812d0b, type: 3}
+  - {fileID: 1233459948527101103, guid: 33b9eed13e3243a4997843d58468e18f, type: 3}
+  archerSpawnerPrefab: {fileID: 3723158421593568281, guid: 4d5f2b76e161a944e935a2c6b50609e8, type: 3}
+  gameOverHandlerPrefab: {fileID: -624279141288634528, guid: fa56aa9fccbacb341b076776d8490607, type: 3}
 --- !u!114 &1349249580360093722
 MonoBehaviour:
   m_ObjectHideFlags: 0

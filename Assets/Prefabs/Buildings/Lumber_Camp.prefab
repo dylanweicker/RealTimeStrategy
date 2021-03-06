@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1244916929328144266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4988006521955608389}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4988006521955608389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244916929328144266}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.98, y: 0, z: 0.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4693085744189665540}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8820848018705022888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4693085744189665658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc2ef14f93290e49b1687551e1be616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  woodPerInterval: 2
+  interval: 5
+  maxWorkers: 1
+  workers: 1
+  workerConsumption: 1
+--- !u!1001 &1122401489364148040
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4693085744189665540}
+    m_Modifications:
+    - target: {fileID: 3068345073811818445, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_Name
+      value: LumberMill_Preview
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006117842124326571, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+--- !u!1 &2668208658159294597 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3068345073811818445, guid: 7a79f9b61eebb274a816b8819ade429e, type: 3}
+  m_PrefabInstance: {fileID: 1122401489364148040}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8213425123515275065
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1131042689633561006, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131042689633561006, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 11505b48d24fd2345b73633e79a5070b, type: 3}
+    - target: {fileID: 1131042689633561006, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: buildingName
+      value: Lumber Mill
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131042689633561006, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: buildingPreview
+      value: 
+      objectReference: {fileID: 2668208658159294597}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088510, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: sceneId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088510, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088512, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_Center.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088512, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_Extents.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088512, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_Extents.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088512, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_Extents.z
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520339624226088515, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+      propertyPath: m_Name
+      value: Lumber_Camp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+--- !u!1 &4693085744189665658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3520339624226088515, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+  m_PrefabInstance: {fileID: 8213425123515275065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4693085744189665540 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3520339624226088509, guid: 8e1599023552a4942bbcfbaa7a88b5a2, type: 3}
+  m_PrefabInstance: {fileID: 8213425123515275065}
+  m_PrefabAsset: {fileID: 0}

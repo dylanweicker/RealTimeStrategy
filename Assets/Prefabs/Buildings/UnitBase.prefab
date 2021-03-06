@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278422274255488660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1139414351621259646}
@@ -156,8 +156,9 @@ GameObject:
   - component: {fileID: -6250226606216043605}
   - component: {fileID: 1771470090385728988}
   - component: {fileID: 7286313105242432544}
+  - component: {fileID: 4589003824732922146}
   m_Layer: 0
-  m_Name: ArcherSpawner
+  m_Name: UnitBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,6 +271,20 @@ MonoBehaviour:
   syncInterval: 0.1
   unitPrefab: {fileID: 5560560054316083430, guid: 97b26a13110d75b45835eb1624cf9903, type: 3}
   spawnPoint: {fileID: 248024879538849009}
+--- !u!114 &4589003824732922146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627491029311890596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624d148bfc3e85147aa33f47e0d3a101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1001 &4049991498141890316
 PrefabInstance:
   m_ObjectHideFlags: 0
